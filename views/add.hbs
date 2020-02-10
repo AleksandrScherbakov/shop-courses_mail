@@ -1,0 +1,31 @@
+<h1>Добавить новый курс</h1>
+{{#if error}}
+    <p class="alert">{{error}}</p>
+{{/if}}
+<div class="row">
+    <form class="col s12" action="/add" method="post">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="courseName" type="text" class="validate" name="title" required value="{{data.title}}">
+                <label for="courseName">Название Курса</label>
+                <span class="helper-text" data-error="Введите название"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="coursePrice" type="text" class="validate" name="price" required value="{{data.price}}" min="1">
+                <label for="coursePrice">Цена курса</label>
+                <span class="helper-text" data-error="Введите цену"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="courseImage" type="text" class="validate" name="url" required value="{{data.url}}">
+                <label for="courseImage">URL картинки</label>
+                <span class="helper-text" data-error="Введите url картнки"></span>
+            </div>
+        </div>
+        <input type="submit" class="waves-effect waves-light btn" value="ДОБАВИТЬ КУРС"/>
+        <input type="hidden" value="{{@root.csrf}}" name="_csrf">
+    </form>
+</div>
