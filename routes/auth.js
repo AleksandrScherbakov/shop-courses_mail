@@ -77,7 +77,7 @@ router.post("/register", registerValidators, async (req, res)=>{
             email, name, password: hashPassword, cart: {items: []}
         });
         await user.save();
-        //await transporter.sendMail(regEmail(email));
+        await transporter.sendMail(regEmail(email));
         res.redirect('/auth')
 
     } catch (e) {
@@ -132,7 +132,7 @@ router.post('/reset', (req, res)=>{
                 candidate.resetToken = token;
                 candidate.resetTokenExp = Date.now() + 60 * 60 * 1000;
                 await candidate.save();
-                //await transporter.sendMail(resetEmail(candidate.email, token));
+                await transporter.sendMail(resetEmail(candidate.email, token));
                 res.redirect('/auth');
             } else {
                 req.flash('error', 'Такого email нет');
